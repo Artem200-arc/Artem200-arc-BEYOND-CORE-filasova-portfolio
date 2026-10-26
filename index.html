@@ -375,6 +375,99 @@ header [class*="btn"] {
   
   header {
     padding: 12px 20px !important;
+  }/* ============================================
+   ЦЕНТРИРОВАНИЕ ВСЕГО КРОМЕ ХЕДЕРА
+   ============================================ */
+
+/* Запрет горизонтального скролла */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Все секции ПОСЛЕ хедера — по центру */
+main,
+main *,
+section,
+section *,
+[class*="section"],
+[class*="block"],
+[class*="content"],
+[class*="container"] {
+  box-sizing: border-box !important;
+}
+
+section,
+[class*="section"],
+[class*="block"] {
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  overflow-x: hidden !important;
+}
+
+/* Контейнеры внутри секций */
+.container,
+[class*="container"] {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Заголовки по центру */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center !important;
+  max-width: 100% !important;
+  word-wrap: break-word !important;
+}
+
+/* Текст по центру */
+p {
+  text-align: center !important;
+  max-width: 100% !important;
+}
+
+/* Картинки по центру и не вылезают */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Карточки по центру */
+[class*="card"],
+[class*="case"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  section,
+  [class*="section"] {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  section,
+  [class*="section"] {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 </style>
 </head>
