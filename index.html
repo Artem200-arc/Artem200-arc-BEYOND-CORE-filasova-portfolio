@@ -375,80 +375,88 @@ header [class*="btn"] {
   
   header {
     padding: 12px 20px !important;
-  }/* === УМЕНЬШЕНИЕ РАЗМЕРОВ НА МОБИЛЬНЫХ === */
+  }/* === ИСПРАВЛЕНИЕ МОБИЛЬНОЙ ВЕРСИИ HERO === */
 
-@media (max-width: 768px) {
-  /* Фото девушки — НОРМАЛЬНЫЙ РАЗМЕР */
-  .hero img,
-  .hero-image,
-  [class*="hero"] img {
-    max-width: 85% !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 auto !important;
-    display: block !important;
+@media (max-width: 900px) {
+  /* Hero секция — правильная структура */
+  .hero {
+    grid-template-columns: 1fr !important;
+    padding: 140px 20px 60px !important;
+    gap: 60px !important;
   }
   
-  /* Круг "10+ лет опыта" — НОРМАЛЬНЫЙ РАЗМЕР */
-  .circle-badge,
-  [class*="badge"] {
-    width: 90px !important;
-    height: 90px !important;
-    font-size: 11px !important;
+  /* Правая часть — ограничиваем размер */
+  .hero-right {
+    max-width: 400px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    position: relative !important;
+  }
+  
+  /* Вращающийся круг — не вылезает */
+  .spin-ring {
+    max-width: 340px !important;
+    max-height: 340px !important;
+    width: 340px !important;
+    height: 340px !important;
+    margin: 0 auto !important;
+  }
+  
+  .spin-ring svg {
+    max-width: 340px !important;
+    max-height: 340px !important;
+  }
+  
+  /* Фото девушки — БОЛЬШОЕ как надо */
+  .hero-photo {
+    width: 75% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Badge "10+ лет" — внутри экрана */
+  .hero-badge {
+    width: 100px !important;
+    height: 100px !important;
+    right: 5% !important;
+    bottom: 20% !important;
+    font-size: 12px !important;
   }
   
   /* Заголовок ФИЛАСОВА */
-  .hero h1,
-  .hero-title,
-  [class*="hero"] h1 {
-    font-size: 36px !important;
-    line-height: 1.1 !important;
-    max-width: 100% !important;
-  }
-  
-  /* Подзаголовок ФОТО КРЕАТОР */
-  .hero h2,
-  .hero-subtitle {
-    font-size: 28px !important;
-  }
-  
-  /* Текст описания */
-  .hero p,
-  .hero-description {
-    font-size: 14px !important;
-    line-height: 1.5 !important;
-  }
-  
-  /* Бейдж "BEYOND CORE" */
-  .badge,
-  [class*="badge"] {
-    font-size: 12px !important;
-    padding: 8px 16px !important;
+  .hero-title {
+    font-size: clamp(32px, 8vw, 56px) !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Фото на очень узких экранах */
-  .hero img,
-  .hero-image {
-    max-width: 80% !important;
-    width: auto !important;
+  .hero-right {
+    max-width: 320px !important;
   }
   
-  .hero h1,
+  .spin-ring,
+  .spin-ring svg {
+    max-width: 300px !important;
+    max-height: 300px !important;
+    width: 300px !important;
+    height: 300px !important;
+  }
+  
+  .hero-photo {
+    width: 70% !important;
+    max-width: 240px !important;
+  }
+  
+  .hero-badge {
+    width: 85px !important;
+    height: 85px !important;
+    font-size: 11px !important;
+    right: 0 !important;
+    bottom: 15% !important;
+  }
+  
   .hero-title {
-    font-size: 28px !important;
-  }
-  
-  .hero h2,
-  .hero-subtitle {
-    font-size: 22px !important;
-  }
-  
-  .circle-badge {
-    width: 80px !important;
-    height: 80px !important;
-    font-size: 10px !important;
+    font-size: clamp(28px, 10vw, 48px) !important;
   }
 </style>
 </head>
