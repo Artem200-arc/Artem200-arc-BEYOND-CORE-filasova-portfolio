@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ОБУЧЕНИЕ — BEYOND CORE ПОРТФОЛИО</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'';src:url('akony-bold.woff2') format('woff2'),url('akony-bold.woff') format('woff');font-display:optional}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg2:#111111;--accent:#c8ff00;--accent-dim:rgba(200,255,0,.15);
+  --white:#fff;--muted:#888;
+  --fd:'akony-bold','Unbounded',sans-serif;--fb:'Golos Text',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--white);overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:none}
+img{max-width:100%;display:block}
+
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,border-color .25s}
+.cursor-dot{width:6px;height:6px;background:var(--accent)}
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--accent);transition:transform .15s ease-out,width .25s,height .25s,border-color .25s}
+.cursor-ring.hover{width:60px;height:60px;border-color:#fff;background:rgba(200,255,0,.08)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:difference}
+.logo{font-family:var(--fd);font-weight:900;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 22px;border-radius:99px;background:var(--accent);color:#000;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:transform .2s}
+.nav-cta:hover{transform:scale(1.05)}
+
+.training-hero{min-height:100vh;padding:140px 40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative}
+.training-hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,var(--accent-dim),transparent 70%);pointer-events:none}
+.th-left{position:relative;z-index:2}
+.th-tag{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:99px;background:var(--accent-dim);border:1px solid var(--accent);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.th-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.th-title{font-family:var(--fd);font-weight:900;font-size:clamp(56px,9vw,140px);line-height:.92;letter-spacing:-3px;text-transform:uppercase;margin-bottom:24px}
+.th-title .accent{color:var(--accent)}
+.th-title .outline{-webkit-text-stroke:2px var(--white);color:transparent}
+.th-sub{font-size:16px;line-height:1.6;color:var(--muted);max-width:480px;margin-bottom:36px}
+.th-stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.th-stat .n{font-family:var(--fd);font-weight:900;font-size:40px;color:var(--accent);line-height:1}
+.th-stat .l{font-size:12px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+.btn{padding:16px 30px;border-radius:99px;font-family:var(--fd);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:transform .25s,box-shadow .25s}
+.btn-primary{background:var(--accent);color:#000;box-shadow:0 10px 30px rgba(200,255,0,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(200,255,0,.5)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn .arrow{transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
+
+.th-right{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:500px;margin:0 auto}
+.spin-ring{position:absolute;inset:0;animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-ring svg{width:100%;height:100%}
+.spin-ring text{font-family:var(--fd);font-size:15px;font-weight:700;fill:var(--accent);letter-spacing:4px;text-transform:uppercase}
+.th-photo{position:relative;z-index:2;width:75%;aspect-ratio:3/4;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.th-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.1)}
+.th-badge{position:absolute;z-index:3;top:8%;left:-8%;width:100px;height:100px;border-radius:50%;background:var(--accent);color:#000;display:grid;place-items:center;font-family:var(--fd);font-weight:900;font-size:13px;text-align:center;line-height:1.1;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-12px) rotate(6deg)}}
+
+.marquee{padding:30px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden;background:var(--bg2)}
+.marquee-track{display:flex;gap:60px;animation:scroll 30s linear infinite;white-space:nowrap}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee-item{font-family:var(--fd);font-weight:900;font-size:clamp(32px,5vw,64px);text-transform:uppercase;letter-spacing:-1px;display:flex;align-items:center;gap:60px}
+.marquee-item .star{color:var(--accent);font-size:.7em}
+
+section{padding:100px 40px;position:relative}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:50px;flex-wrap:wrap;gap:20px}
+.sec-num{font-family:var(--fd);font-size:13px;color:var(--accent);letter-spacing:3px;margin-bottom:12px}
+.sec-title{font-family:var(--fd);font-weight:900;font-size:clamp(36px,6vw,80px);line-height:.95;letter-spacing:-2px;text-transform:uppercase}
+.sec-title .accent{color:var(--accent)}
+.sec-desc{max-width:420px;color:var(--muted);font-size:15px;line-height:1.6}
+
+.program-list{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.prog-item{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 30px;display:grid;grid-template-columns:80px 1fr auto;gap:24px;align-items:center;transition:border-color .3s,transform .3s}
+.prog-item:hover{border-color:var(--accent);transform:translateX(6px)}
+.prog-num{font-family:var(--fd);font-weight:900;font-size:40px;color:var(--accent);line-height:1}
+.prog-title{font-family:var(--fd);font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:6px}
+.prog-desc{font-size:14px;color:var(--muted);line-height:1.5}
+.prog-hours{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap;padding:8px 16px;border:1px solid var(--accent);border-radius:99px}
+
+.tariffs{background:var(--bg2)}
+.tar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tar{background:var(--bg);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:36px 30px;position:relative;transition:transform .4s,border-color .3s}
+.tar:hover{transform:translateY(-8px);border-color:var(--accent)}
+.tar.popular{background:var(--accent);color:#000;border-color:var(--accent)}
+.tar.popular .tar-name,.tar.popular .tar-feat{color:#000}
+.tar.popular .tar-price{color:#000}
+.tar.popular .tar-btn{background:#000;color:var(--accent)}
+.tar-badge{position:absolute;top:-12px;right:24px;padding:6px 14px;border-radius:99px;background:var(--accent);color:#000;font-family:var(--fd);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.tar-name{font-family:var(--fd);font-weight:800;font-size:22px;text-transform:uppercase;margin-bottom:8px}
+.tar-desc{font-size:13px;color:var(--muted);margin-bottom:24px;min-height:36px}
+.tar.popular .tar-desc{color:rgba(0,0,0,.7)}
+.tar-price{font-family:var(--fd);font-weight:900;font-size:44px;color:var(--accent);margin-bottom:24px;line-height:1}
+.tar-price .cur{font-size:18px;font-weight:700}
+.tar-feat{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:12px}
+.tar-feat li{font-size:14px;display:flex;align-items:flex-start;gap:10px}
+.tar-feat li::before{content:'✓';color:var(--accent);font-weight:900;font-family:var(--fd);flex-shrink:0}
+.tar.popular .tar-feat li::before{color:#000}
+.tar-btn{width:100%;padding:14px;border-radius:99px;background:var(--accent);color:#000;font-family:var(--fd);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;transition:transform .2s}
+.tar-btn:hover{transform:scale(1.03)}
+
+.quiz-wrap{max-width:760px;margin:0 auto}
+.quiz-progress{display:flex;gap:8px;margin-bottom:40px}
+.quiz-progress .bar{flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.quiz-progress .bar.on{background:var(--accent)}
+.quiz-step{display:none;animation:fadeIn .4s}
+.quiz-step.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.quiz-q{font-family:var(--fd);font-weight:800;font-size:clamp(24px,4vw,40px);text-transform:uppercase;line-height:1.1;margin-bottom:12px}
+.quiz-q .accent{color:var(--accent)}
+.quiz-sub{color:var(--muted);font-size:14px;margin-bottom:36px}
+.quiz-options{display:grid;gap:12px;margin-bottom:30px}
+.quiz-opt{padding:18px 22px;border-radius:14px;background:var(--bg2);border:1.5px solid rgba(255,255,255,.08);font-size:15px;font-weight:600;display:flex;align-items:center;gap:14px;transition:border-color .2s,background .2s,transform .2s;cursor:none}
+.quiz-opt:hover{border-color:var(--accent);transform:translateX(4px)}
+.quiz-opt.sel{border-color:var(--accent);background:var(--accent-dim)}
+.quiz-opt .radio{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.2);flex-shrink:0;display:grid;place-items:center;transition:border-color .2s}
+.quiz-opt.sel .radio{border-color:var(--accent)}
+.quiz-opt.sel .radio::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.quiz-input{width:100%;padding:16px 20px;border-radius:14px;background:var(--bg2);border:1.5px solid rgba(255,255,255,.08);color:var(--white);font-size:15px;font-family:var(--fb);transition:border-color .2s}
+.quiz-input:focus{outline:none;border-color:var(--accent)}
+textarea.quiz-input{min-height:120px;resize:vertical}
+.quiz-nav{display:flex;gap:12px;justify-content:space-between}
+.quiz-btn{padding:14px 28px;border-radius:99px;font-family:var(--fd);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:transform .2s}
+.quiz-btn-back{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.2)}
+.quiz-btn-back:hover{border-color:var(--accent);color:var(--accent)}
+.quiz-btn-next{background:var(--accent);color:#000}
+.quiz-btn-next:hover{transform:translateY(-2px)}
+.quiz-btn-next:disabled{opacity:.4;cursor:not-allowed}
+.quiz-success{text-align:center;padding:40px 20px}
+.quiz-success .check{width:80px;height:80px;border-radius:50%;background:var(--accent);color:#000;display:grid;place-items:center;font-size:40px;margin:0 auto 24px;animation:popIn .5s}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+.quiz-success h3{font-family:var(--fd);font-size:28px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+.quiz-success p{color:var(--muted);font-size:15px;line-height:1.6;max-width:440px;margin:0 auto}
+
+.contact{background:var(--accent);color:#000;text-align:center;padding:100px 40px;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.2),transparent 50%)}
+.contact-title{font-family:var(--fd);font-weight:900;font-size:clamp(40px,8vw,100px);line-height:.95;letter-spacing:-3px;text-transform:uppercase;margin-bottom:30px;position:relative}
+.contact-phone{display:inline-flex;align-items:center;gap:14px;padding:20px 36px;border-radius:99px;background:#000;color:var(--accent);font-family:var(--fd);font-weight:800;font-size:clamp(20px,3vw,32px);margin-bottom:30px;position:relative;transition:transform .3s}
+.contact-phone:hover{transform:scale(1.04)}
+.contact-sub{font-size:15px;opacity:.8;position:relative;max-width:500px;margin:0 auto}
+
+footer{padding:30px 40px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .nav{padding:16px 20px}
+  .nav-links{display:none}
+  .training-hero{grid-template-columns:1fr;padding:120px 20px 60px}
+  .th-right{order:-1;max-width:340px}
+  section{padding:60px 20px}
+  .prog-item{grid-template-columns:1fr;gap:12px}
+  .prog-num{font-size:28px}
+  .tar-grid{grid-template-columns:1fr}
+  body{cursor:auto}
+  .cursor-dot,.cursor-ring{display:none}
+  button,a,.quiz-opt{cursor:pointer}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"></div>
+
+<nav class="nav">
+  <a href="index.html" class="logo">ВАШ <span>ЛОГОТИП</span></a>
+  <div class="nav-links">
+    <a href="index.html#about">Обо мне</a>
+    <a href="index.html#services">Услуги</a>
+    <a href="index.html#cases">Кейсы</a>
+    <a href="#program">Программа</a>
+    <a href="#quiz">Бриф</a>
+  </div>
+  <a href="#quiz" class="nav-cta">Записаться</a>
+</nav>
+
+<section class="training-hero">
+  <div class="th-left">
+    <div class="th-tag"><span class="dot"></span>ОНЛАЙН-ОБУЧЕНИЕ · СТАРТ 15 НОЯБРЯ</div>
+    <h1 class="th-title">НАУЧУ<span class="accent">ЗАРАБАТЫВАТЬ</span><span class="outline">НА ФОТО</span></h1>
+    <p class="th-sub">Авторский курс от практика с 10-летним опытом. От первого клиента до стабильного дохода 150 000+ ₽ в месяц. С обратной связью, разборами и доступом в закрытое комьюнити.</p>
+    <div class="th-stats">
+      <div class="th-stat"><div class="n">500+</div><div class="l">Выпускников</div></div>
+      <div class="th-stat"><div class="n">4.9</div><div class="l">Рейтинг курса</div></div>
+      <div class="th-stat"><div class="n">12</div><div class="l">Недель программы</div></div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a href="#quiz" class="btn btn-primary">Пройти бриф <span class="arrow">→</span></a>
+      <a href="#tariffs" class="btn btn-ghost">Тарифы</a>
+    </div>
+  </div>
+  <div class="th-right">
+    <div class="spin-ring">
+      <svg viewBox="0 0 400 400">
+        <defs><path id="circle" d="M 200,200 m -170,0 a 170,170 0 1,1 340,0 a 170,170 0 1,1 -340,0"/></defs>
+        <text><textPath href="#circle">• LEARN • EARN • CREATE • GROW • SHOOT • EDIT • </textPath></text>
+      </svg>
+    </div>
+    <div class="th-photo">
+      <img src="alex.png" alt="Training">
+    </div>
+    <div class="th-badge">СТАРТ<br>15.11<br>2025</div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">ОБУЧЕНИЕ <span class="star">✦</span> ПРАКТИКА <span class="star">✦</span> РЕЗУЛЬТАТ <span class="star">✦</span> ДОХОД <span class="star">✦</span> КОМЬЮНИТИ <span class="star">✦</span> РАЗБОРЫ <span class="star">✦</span></div>
+    <div class="marquee-item">ОБУЧЕНИЕ <span class="star">✦</span> ПРАКТИКА <span class="star">✦</span> РЕЗУЛЬТАТ <span class="star">✦</span> ДОХОД <span class="star">✦</span> КОМЬЮНИТИ <span class="star">✦</span> РАЗБОРЫ <span class="star"></span></div>
+  </div>
+</div>
+
+<section id="program">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-num">[ 01 ]</div>
+      <h2 class="sec-title">ПРОГРАММА <span class="accent">КУРСА</span></h2>
+    </div>
+    <p class="sec-desc">12 недель интенсивной практики. От базы до продвинутых техник и выхода на стабильный доход.</p>
+  </div>
+  <div class="program-list">
+    <div class="prog-item reveal"><div class="prog-num">01</div><div><div class="prog-title">База и техника съёмки</div><div class="prog-desc">Камера, свет, композиция, работа с моделью. Фундамент, без которого никуда.</div></div><div class="prog-hours">12 часов</div></div>
+    <div class="prog-item reveal"><div class="prog-num">02</div><div><div class="prog-title">Обработка и ретушь</div><div class="prog-desc">Lightroom, Photoshop, мобильная обработка. Создаём единый стиль и насмотренность.</div></div><div class="prog-hours">10 часов</div></div>
+    <div class="prog-item reveal"><div class="prog-num">03</div><div><div class="prog-title">Контент-стратегия</div><div class="prog-desc">Как продавать через визуал. Позиционирование, упаковка, работа с брендами.</div></div><div class="prog-hours">8 часов</div></div>
+    <div class="prog-item reveal"><div class="prog-num">04</div><div><div class="prog-title">Поиск клиентов и продажи</div><div class="prog-desc">Где брать заказчиков, как считать стоимость, как вести переговоры и удерживать клиентов.</div></div><div class="prog-hours">10 часов</div></div>
+    <div class="prog-item reveal"><div class="prog-num">05</div><div><div class="prog-title">Масштабирование дохода</div><div class="prog-desc">Пассивный доход, курсы, консультации, агентство. Выход на 150 000+ ₽ в месяц.</div></div><div class="prog-hours">8 часов</div></div>
+  </div>
+</section>
+
+<section id="tariffs" class="tariffs">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-num">[ 02 ]</div>
+      <h2 class="sec-title">ТАРИФЫ <span class="accent">ОБУЧЕНИЯ</span></h2>
+    </div>
+    <p class="sec-desc">Выберите формат, который подходит именно вам. Все тарифы включают доступ к материалам навсегда.</p>
+  </div>
+  <div class="tar-grid">
+    <div class="tar reveal">
+      <div class="tar-name">Самостоятельный</div>
+      <div class="tar-desc">Для тех, кто любит учиться в своём темпе</div>
+      <div class="tar-price">29 900 <span class="cur">₽</span></div>
+      <ul class="tar-feat">
+        <li>Доступ ко всем урокам</li>
+        <li>Домашние задания с автопроверкой</li>
+        <li>Закрытый Telegram-канал</li>
+        <li>Сертификат об окончании</li>
+      </ul>
+      <a href="#quiz" class="tar-btn">Выбрать тариф</a>
+    </div>
+    <div class="tar popular reveal">
+      <div class="tar-badge">ХИТ ПРОДАЖ</div>
+      <div class="tar-name">С куратором</div>
+      <div class="tar-desc">Оптимальный выбор для быстрого результата</div>
+      <div class="tar-price">59 900 <span class="cur">₽</span></div>
+      <ul class="tar-feat">
+        <li>Всё из тарифа «Самостоятельный»</li>
+        <li>Личная обратная связь по ДЗ</li>
+        <li>2 живых разбора в месяц</li>
+        <li>Чат с однокурсниками</li>
+        <li>Помощь с первым клиентом</li>
+      </ul>
+      <a href="#quiz" class="tar-btn">Выбрать тариф</a>
+    </div>
+    <div class="tar reveal">
+      <div class="tar-name">Менторство</div>
+      <div class="tar-desc">Индивидуальная работа до результата</div>
+      <div class="tar-price">149 900 <span class="cur">₽</span></div>
+      <ul class="tar-feat">
+        <li>Всё из тарифа «С куратором»</li>
+        <li>8 личных созвонов со мной</li>
+        <li>Разбор вашего портфолио</li>
+        <li>Помощь в позиционировании</li>
+        <li>Гарантия первого клиента за 2 мес.</li>
+      </ul>
+      <a href="#quiz" class="tar-btn">Выбрать тариф</a>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-num">[ 03 ]</div>
+      <h2 class="sec-title">БРИФ <span class="accent">НА ОБУЧЕНИЕ</span></h2>
+    </div>
+    <p class="sec-desc">Ответьте на 5 вопросов — и я подберу оптимальную программу и тариф именно под ваши цели.</p>
+  </div>
+  <div class="quiz-wrap reveal">
+    <div class="quiz-progress" id="quizProgress"></div>
+    <form id="quizForm" onsubmit="return false">
+      <div class="quiz-step active" data-step="1">
+        <div class="quiz-q">Какой у вас <span class="accent">опыт</span> в фотографии?</div>
+        <div class="quiz-sub">Выберите один вариант</div>
+        <div class="quiz-options" data-name="experience">
+          <div class="quiz-opt" data-val="none"><span class="radio"></span>Полный новичок, никогда не снимал</div>
+          <div class="quiz-opt" data-val="hobby"><span class="radio"></span>Снимаю для себя, как хобби</div>
+          <div class="quiz-opt" data-val="some"><span class="radio"></span>Есть небольшой коммерческий опыт</div>
+          <div class="quiz-opt" data-val="pro"><span class="radio"></span>Уже работаю, хочу выйти на новый уровень</div>
+        </div>
+        <div class="quiz-nav"><div></div><button type="button" class="quiz-btn quiz-btn-next" data-next>Далее →</button></div>
+      </div>
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-q">Какая у вас <span class="accent">цель</span> обучения?</div>
+        <div class="quiz-sub">Можно выбрать несколько вариантов</div>
+        <div class="quiz-options" data-name="goal" data-multi="true">
+          <div class="quiz-opt" data-val="money"><span class="radio"></span>Начать зарабатывать на фотографии</div>
+          <div class="quiz-opt" data-val="skill"><span class="radio"></span>Прокачать техническое мастерство</div>
+          <div class="quiz-opt" data-val="brand"><span class="radio"></span>Создать личный бренд</div>
+          <div class="quiz-opt" data-val="business"><span class="radio"></span>Открыть свою студию / агентство</div>
+        </div>
+        <div class="quiz-nav"><button type="button" class="quiz-btn quiz-btn-back" data-back>← Назад</button><button type="button" class="quiz-btn quiz-btn-next" data-next>Далее →</button></div>
+      </div>
+      <div class="quiz-step" data-step="3">
+        <div class="quiz-q">Какой <span class="accent">бюджет</span> вы готовы вложить в обучение?</div>
+        <div class="quiz-sub">Это поможет подобрать подходящий тариф</div>
+        <div class="quiz-options" data-name="budget">
+          <div class="quiz-opt" data-val="low"><span class="radio"></span>До 30 000 ₽</div>
+          <div class="quiz-opt" data-val="mid"><span class="radio"></span>30 000 — 70 000 ₽</div>
+          <div class="quiz-opt" data-val="high"><span class="radio"></span>70 000 — 150 000 ₽</div>
+          <div class="quiz-opt" data-val="any"><span class="radio"></span>Готов инвестировать в результат</div>
+        </div>
+        <div class="quiz-nav"><button type="button" class="quiz-btn quiz-btn-back" data-back>← Назад</button><button type="button" class="quiz-btn quiz-btn-next" data-next>Далее →</button></div>
+      </div>
+      <div class="quiz-step" data-step="4">
+        <div class="quiz-q">Когда планируете <span class="accent">начать</span>?</div>
+        <div class="quiz-sub">Выберите один вариант</div>
+        <div class="quiz-options" data-name="start">
+          <div class="quiz-opt" data-val="now"><span class="radio"></span>Готов начать прямо сейчас</div>
+          <div class="quiz-opt" data-val="month"><span class="radio"></span>В течение месяца</div>
+          <div class="quiz-opt" data-val="quarter"><span class="radio"></span>В течение квартала</div>
+          <div class="quiz-opt" data-val="think"><span class="radio"></span>Пока просто изучаю варианты</div>
+        </div>
+        <div class="quiz-nav"><button type="button" class="quiz-btn quiz-btn-back" data-back>← Назад</button><button type="button" class="quiz-btn quiz-btn-next" data-next>Далее →</button></div>
+      </div>
+      <div class="quiz-step" data-step="5">
+        <div class="quiz-q">Оставьте <span class="accent">контакты</span></div>
+        <div class="quiz-sub">Я свяжусь с вами в течение 24 часов и пришлю персональное предложение</div>
+        <div style="display:grid;gap:14px;margin-bottom:30px">
+          <input type="text" class="quiz-input" id="qName" placeholder="Ваше имя" required>
+          <input type="tel" class="quiz-input" id="qPhone" placeholder="Телефон для связи: +7 (___) ___-__-__" required>
+          <textarea class="quiz-input" id="qComment" placeholder="Комментарий (необязательно): ваши вопросы или пожелания"></textarea>
+        </div>
+        <div class="quiz-nav"><button type="button" class="quiz-btn quiz-btn-back" data-back>← Назад</button><button type="submit" class="quiz-btn quiz-btn-next" id="qSubmit">Отправить бриф →</button></div>
+      </div>
+      <div class="quiz-step" data-step="success">
+        <div class="quiz-success">
+          <div class="check">✓</div>
+          <h3>Бриф отправлен!</h3>
+          <p>Спасибо за ответы. Я изучу их и свяжусь с вами в течение 24 часов по номеру, который вы указали.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="sec-num" style="color:#000;opacity:.6">[ 04 ]</div>
+  <h2 class="contact-title reveal">СВЯЖИТЕСЬ<br>СО МНОЙ</h2>
+  <a href="tel:+79001234567" class="contact-phone reveal"> +7 (900) 123-45-67</a>
+  <p class="contact-sub reveal">Звоните или пишите в мессенджеры — отвечу в течение часа в рабочее время</p>
+</section>
+
+<footer>
+  <div>© 2025 BEYOND CORE · ФИЛАСОВА</div>
+  <div>Сделано с <span style="color:var(--accent)">♥</span> · <a href="index.html">Портфолио</a></div>
+</footer>
+
+<script>
+const dot=document.getElementById('cDot'),ring=document.getElementById('cRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.quiz-opt,.tar,.prog-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+});
+
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const totalSteps=5;
+let currentStep=1;
+const answers={};
+const prog=document.getElementById('quizProgress');
+for(let i=1;i<=totalSteps;i++){const b=document.createElement('div');b.className='bar'+(i===1?' on':'');b.dataset.bar=i;prog.appendChild(b)}
+
+function showStep(n){
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  const target=n==='success'?document.querySelector('[data-step="success"]'):document.querySelector(`[data-step="${n}"]`);
+  if(target)target.classList.add('active');
+  document.querySelectorAll('.bar').forEach((b,i)=>b.classList.toggle('on',i+1<=n));
+  currentStep=n;
+  window.scrollTo({top:document.getElementById('quiz').offsetTop-80,behavior:'smooth'});
+}
+
+document.querySelectorAll('.quiz-options').forEach(group=>{
+  const multi=group.dataset.multi==='true';
+  group.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      if(multi){opt.classList.toggle('sel')}
+      else{group.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('sel'));opt.classList.add('sel')}
+    });
+  });
+});
+
+document.querySelectorAll('[data-next]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const step=document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+    const group=step.querySelector('.quiz-options');
+    if(group && !group.querySelector('.quiz-opt.sel')){toast('Выберите хотя бы один вариант');return}
+    if(group){
+      const name=group.dataset.name;
+      const sel=[...group.querySelectorAll('.quiz-opt.sel')].map(o=>o.dataset.val);
+      answers[name]=group.dataset.multi==='true'?sel:sel[0];
+    }
+    if(currentStep<totalSteps)showStep(currentStep+1);
+  });
+});
+document.querySelectorAll('[data-back]').forEach(btn=>{
+  btn.addEventListener('click',()=>{if(currentStep>1)showStep(currentStep-1)});
+});
+
+document.getElementById('quizForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('qName').value.trim();
+  const phone=document.getElementById('qPhone').value.trim();
+  if(!name||!phone){toast('Укажите имя и телефон');return}
+  answers.name=name;answers.phone=phone;answers.comment=document.getElementById('qComment').value.trim();
+  console.log('QUIZ ANSWERS:',answers);
+  showStep('success');
+});
+
+let tt;function toast(m){const t=document.createElement('div');t.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;padding:14px 24px;border-radius:99px;font-family:var(--fd);font-size:13px;font-weight:700;z-index:10000;box-shadow:0 10px 30px rgba(200,255,0,.4)';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.style.opacity='0',2500);setTimeout(()=>t.remove(),3000)}
+
+const ht=document.querySelector('.th-title');
+if(ht){setInterval(()=>{if(Math.random()>.85){ht.style.textShadow=`${(Math.random()-.5)*6}px 0 var(--accent),${(Math.random()-.5)*6}px 0 #ff00aa`;setTimeout(()=>ht.style.textShadow='',80)}},2000)}
+</script>
+</body>
+</html>
