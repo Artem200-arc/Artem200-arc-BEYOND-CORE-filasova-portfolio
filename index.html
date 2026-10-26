@@ -375,117 +375,31 @@ header [class*="btn"] {
   
   header {
     padding: 12px 20px !important;
-  }/* === ФИНАЛЬНАЯ АДАПТАЦИЯ === */
+  }/* === ТОЛЬКО СДВИНУТЬ ЛЕВЕЕ, РАЗМЕР НЕ МЕНЯТЬ === */
 
 @media (max-width: 768px) {
   
-  /* Большой круг с текстом — нормальный размер */
-  .circle-text-wrapper,
-  .rotating-circle,
-  .text-circle,
-  [class*="circle-text"],
-  [class*="rotating"],
-  [class*="orbit"],
-  .hero-circle-svg,
-  svg.hero-circle {
-    max-width: 340px !important;
-    max-height: 340px !important;
-    width: 340px !important;
-    height: 340px !important;
-    margin: 0 auto !important;
-    display: block !important;
-  }
-  
-  /* Фото девушки — БОЛЬШОЕ и СДВИНУТО ЛЕВЕЕ */
+  /* Фото девушки — ТОЛЬКО СДВИНУТЬ, размер НЕ менять */
   .hero-photo,
   .hero-image,
   .hero img,
   [class*="hero-photo"],
   [class*="hero-image"] {
-    max-width: 320px !important;
-    width: 320px !important;
-    height: auto !important;
-    margin-left: -20px !important;
+    margin-left: -40px !important;
     margin-right: auto !important;
-    display: block !important;
   }
   
-  /* Круг "10+ лет опыта" — на месте */
-  .experience-badge,
-  .badge-10years,
-  .years-badge,
-  [class*="experience"],
-  [class*="badge"][class*="year"],
-  .circle-badge {
-    width: 110px !important;
-    height: 110px !important;
-    min-width: 110px !important;
-    min-height: 110px !important;
-    font-size: 13px !important;
-    position: absolute !important;
-    right: 5% !important;
-    bottom: 25% !important;
-    z-index: 10 !important;
-  }
-  
-  /* Заголовок ФИЛАСОВА — УМЕНЬШАЕМ чтобы помещался */
+  /* Заголовок ФИЛАСОВА — чтобы помещался */
   .hero h1,
   .hero-title {
     font-size: 36px !important;
-    line-height: 1.05 !important;
     word-break: break-word !important;
-    overflow-wrap: break-word !important;
-    max-width: 100% !important;
-    padding-right: 10px !important;
   }
   
-  /* Подзаголовок ФОТО КРЕАТОР — тоже уменьшаем */
   .hero h2,
   .hero-subtitle {
     font-size: 30px !important;
     word-break: break-word !important;
-    max-width: 100% !important;
-  }
-  
-  /* Описание */
-  .hero p,
-  .hero-description {
-    font-size: 16px !important;
-    line-height: 1.5 !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .circle-text-wrapper,
-  .rotating-circle,
-  [class*="circle-text"],
-  [class*="rotating"] {
-    max-width: 300px !important;
-    width: 300px !important;
-    height: 300px !important;
-  }
-  
-  .hero-photo,
-  .hero-image,
-  .hero img {
-    max-width: 280px !important;
-    width: 280px !important;
-    margin-left: -15px !important;
-  }
-  
-  .hero h1 {
-    font-size: 30px !important;
-  }
-  
-  .hero h2 {
-    font-size: 24px !important;
-  }
-  
-  .experience-badge,
-  .circle-badge {
-    width: 95px !important;
-    height: 95px !important;
-    font-size: 11px !important;
   }
 </style>
 </head>
