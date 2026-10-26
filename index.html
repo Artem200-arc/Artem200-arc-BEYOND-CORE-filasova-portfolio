@@ -375,85 +375,103 @@ header [class*="btn"] {
   
   header {
     padding: 12px 20px !important;
-  }/* === УМЕНЬШЕНИЕ РАЗМЕРОВ НА МОБИЛЬНЫХ === */
+  }/* === ИСПРАВЛЕНИЕ: ФОТО + КРУГ + BADGE === */
 
 @media (max-width: 768px) {
-  /* Фото девушки — уменьшаем */
+  /* Главный контейнер hero — ограничиваем */
+  .hero,
+  .hero-section,
+  section:first-child {
+    max-width: 100vw !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  
+  /* КРУГ С ТЕКСТОМ ПО ПЕРИМЕТРУ — ограничиваем размер */
+  .circle-text,
+  .rotating-text,
+  [class*="circle-text"],
+  [class*="rotating"],
+  [class*="orbit"],
+  svg[class*="circle"],
+  .hero-circle {
+    max-width: 320px !important;
+    max-height: 320px !important;
+    width: 320px !important;
+    height: 320px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* ФОТО ДЕВУШКИ — нормальный размер */
   .hero img,
   .hero-image,
+  .hero-photo,
   [class*="hero"] img {
-    max-width: 70% !important;
-    width: 70% !important;
+    max-width: 280px !important;
+    width: 280px !important;
     height: auto !important;
     margin: 0 auto !important;
     display: block !important;
+    position: relative !important;
+    z-index: 2 !important;
   }
   
-  /* Круг "10+ лет опыта" — уменьшаем */
-  .circle-badge,
-  [class*="circle"],
-  [class*="badge"],
-  [class*="experience"] {
-    width: 80px !important;
-    height: 80px !important;
-    min-width: 80px !important;
-    min-height: 80px !important;
-    font-size: 10px !important;
+  /* КРУГ "10+ ЛЕТ ОПЫТА" — правильный размер и позиция */
+  .badge-experience,
+  .experience-badge,
+  [class*="experience"],
+  [class*="badge"][class*="10"],
+  .circle-badge {
+    width: 90px !important;
+    height: 90px !important;
+    min-width: 90px !important;
+    min-height: 90px !important;
+    font-size: 11px !important;
+    position: absolute !important;
+    right: 10px !important;
+    bottom: 30% !important;
+    z-index: 3 !important;
   }
   
-  /* Заголовок ФИЛАСОВА — уменьшаем */
+  /* Заголовок ФИЛАСОВА */
   .hero h1,
-  .hero-title,
-  [class*="hero"] h1 {
-    font-size: 36px !important;
-    line-height: 1.1 !important;
+  .hero-title {
+    font-size: 38px !important;
+    line-height: 1.05 !important;
+    word-break: break-word !important;
     max-width: 100% !important;
   }
   
-  /* Подзаголовок ФОТО КРЕАТОР */
+  /* Подзаголовок */
   .hero h2,
   .hero-subtitle {
-    font-size: 28px !important;
-  }
-  
-  /* Текст описания */
-  .hero p,
-  .hero-description {
-    font-size: 14px !important;
-    line-height: 1.5 !important;
-  }
-  
-  /* Бейдж "BEYOND CORE" */
-  .badge,
-  [class*="badge"] {
-    font-size: 12px !important;
-    padding: 8px 16px !important;
+    font-size: 30px !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Ещё меньше на очень узких экранах */
+  .circle-text,
+  .rotating-text,
+  [class*="circle-text"],
+  [class*="rotating"] {
+    max-width: 280px !important;
+    max-height: 280px !important;
+    width: 280px !important;
+    height: 280px !important;
+  }
+  
   .hero img,
   .hero-image {
-    max-width: 60% !important;
-    width: 60% !important;
+    max-width: 240px !important;
+    width: 240px !important;
   }
   
-  .hero h1,
-  .hero-title {
-    font-size: 28px !important;
+  .hero h1 {
+    font-size: 32px !important;
   }
   
-  .hero h2,
-  .hero-subtitle {
-    font-size: 22px !important;
-  }
-  
-  .circle-badge,
-  [class*="circle"] {
-    width: 70px !important;
-    height: 70px !important;
-    font-size: 9px !important;
+  .hero h2 {
+    font-size: 26px !important;
   }
 </style>
 </head>
