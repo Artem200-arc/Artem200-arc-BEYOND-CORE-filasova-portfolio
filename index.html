@@ -400,77 +400,85 @@ header [class*="btn"] {
   .hero-subtitle {
     font-size: 40px !important;
     word-break: break-word !important;
-  }/* === АДАПТАЦИЯ БЛОКОВ УСЛУГ НА МОБИЛЬНЫХ === */
+  }/* === АДАПТАЦИЯ 4 БЛОКОВ УСЛУГ НА МОБИЛЬНЫХ === */
 
 @media (max-width: 768px) {
   
-  /* Заголовки услуг (ФОТОКОНТЕНТ, МОНТАЖ и т.д.) */
+  /* Сами блоки — рамочные поля со всех сторон */
+  .service-card,
+  [class*="service-card"],
+  [class*="card"],
+  [class*="block"] {
+    padding: 25px 20px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Заголовки — помещаются в блок */
   .service-card h3,
-  .service-title,
-  [class*="service"] h3,
-  [class*="card"] h3 {
-    font-size: 28px !important;
-    line-height: 1.1 !important;
+  [class*="card"] h3,
+  [class*="service"] h3 {
+    font-size: 26px !important;
+    line-height: 1.15 !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
     max-width: 100% !important;
-    padding-right: 10px !important;
+    padding-right: 15px !important;
+    box-sizing: border-box !important;
   }
   
-  /* Цены (5 000 ₽) */
-  .price,
-  .service-price,
-  [class*="price"] {
-    font-size: 12px !important;
-    line-height: 1.1 !important;
+  /* Цены — тоже помещаются */
+  [class*="price"],
+  [class*="cost"] {
+    font-size: 28px !important;
     word-break: break-word !important;
     max-width: 100% !important;
   }
   
-  .price span,
   [class*="price"] span {
-    font-size: 28px !important;
+    font-size: 24px !important;
   }
   
-  /* Описание услуги */
+  /* Описание */
   .service-card p,
-  .service-description,
-  [class*="service"] p {
+  [class*="card"] p {
     font-size: 14px !important;
     line-height: 1.4 !important;
   }
   
-  /* Кнопки СВЯЗАТЬСЯ */
+  /* Кнопки */
   .service-card button,
   .service-card .btn,
-  [class*="service"] button {
-    font-size: 14px !important;
-    padding: 12px 20px !important;
+  [class*="card"] button {
+    font-size: 13px !important;
+    padding: 10px 18px !important;
     width: auto !important;
-    max-width: 100% !important;
   }
   
-  /* Номер блока (03, 04) */
-  .service-number,
-  [class*="number"] {
-    font-size: 20px !important;
+  /* Номера блоков (01, 02, 03, 04) */
+  [class*="number"],
+  [class*="num"] {
+    font-size: 18px !important;
   }
 }
 
 @media (max-width: 480px) {
+  .service-card,
+  [class*="card"] {
+    padding: 20px 15px !important;
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+  }
+  
   .service-card h3,
-  [class*="service"] h3 {
-    font-size: 24px !important;
-  }
-  
-  .price,
-  [class*="price"] {
-    font-size: 26px !important;
-  }
-  
-  .price span,
-  [class*="price"] span {
+  [class*="card"] h3 {
     font-size: 22px !important;
+  }
+  
+  [class*="price"] {
+    font-size: 24px !important;
   }
 </style>
 </head>
